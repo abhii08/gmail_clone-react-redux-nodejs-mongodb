@@ -1,0 +1,35 @@
+# Node.js dependencies
+backend/node_modules/
+
+# Environment variables
+backend/.env
+backend/.env.local
+backend/.env.*.local
+
+# Logs
+backend/logs
+backend/*.log
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/pnpm-debug.log*
+
+# Runtime files
+backend/pids
+backend/*.pid
+backend/*.seed
+backend/*.pid.lock
+
+# Coverage directory
+backend/coverage/
+
+# Build output
+backend/dist/
+backend/build/
+
+# OS / Editor files
+backend/.DS_Store
+backend/*.swp
+backend/*.swo
+backend/.idea/
+backend/.vscode/
