@@ -8,6 +8,8 @@ import SendEmail from "./components/Sendemail";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const appRouter = createBrowserRouter([
   {
@@ -37,7 +39,7 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <div className="bg-[#f6f8fc] h-screen">
-      <Navbar />
+      
       <RouterProvider router={appRouter} />
       <div className="absolute w-[30%] bottom-0 right-20 z-10">
         <SendEmail />
