@@ -5,9 +5,10 @@ import { CiCircleQuestion } from "react-icons/ci";
 import { IoIosSettings } from "react-icons/io";
 import { TbGridDots } from "react-icons/tb";
 import Avatar from "react-avatar";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const user = false;
+  const { user } = useSelector(store => store.app);
   return (
     <div className="flex items-center justify-between mx-3 h-16">
       <div className="flex items-center gap-10">
@@ -46,7 +47,7 @@ const Navbar = () => {
               <TbGridDots size={"24px"} />
             </div>
             <Avatar
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqSTTueKdjM4z7B0u5Gqx5UFUZjqtL3_8QhQ&s"
+              src={user.profilePhoto}
               size={"40px"}
               round={true}
             />
