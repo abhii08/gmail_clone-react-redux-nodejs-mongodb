@@ -18,7 +18,7 @@ const Login = () => {
   };
 
   const submitHandler = async(e) => {
-    console.log(input);
+    // console.log(input);
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8080/api/v1/user/login", input, {
@@ -27,7 +27,7 @@ const Login = () => {
         },
         withCredentials:true
       });
-      console.log(res.data);
+      // console.log(res.data);
       if(res.data.success){
         dispatch(setAuthUser(res.data.user));
         navigate("/");

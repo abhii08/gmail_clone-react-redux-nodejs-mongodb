@@ -1,4 +1,6 @@
+import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 import { BiArchiveIn } from "react-icons/bi";
 import { IoMdArrowBack, IoMdMore } from "react-icons/io";
 import {
@@ -11,10 +13,24 @@ import {
   MdOutlineReport,
   MdOutlineWatchLater,
 } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Mail = () => {
   const navigate = useNavigate();
+  const { selectedEmail } = useSelector(store => store.app);
+  const params = useParams();
+
+  const deleteHandler = async() => {
+    try {
+      const res = await axios.delete(`http://localhost:8080/api/v1/email/${params.id}`, {withCredentials:true});
+      toast.success(res.data.message);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="flex-1 bg-white rounded-xl mx-5">
       <div className="flex items-center justify-between px-4">
@@ -31,7 +47,7 @@ const Mail = () => {
           <div className="p-2 rounded-full hover:bg-gray-200 haver:cursor-pointer">
             <MdOutlineReport size={"20px"} />
           </div>
-          <div className="p-2 rounded-full hover:bg-gray-200 haver:cursor-pointer">
+          <div onClick={deleteHandler} className="p-2 rounded-full hover:bg-gray-200 haver:cursor-pointer">
             <MdDeleteOutline size={"20px"} />
           </div>
           <div className="p-2 rounded-full hover:bg-gray-200 haver:cursor-pointer">
@@ -59,7 +75,7 @@ const Mail = () => {
       <div className="h-[90vh] overflow-y-auto p-4">
         <div className="flex justify-between bg-white items-center gap-1">
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-medium ">Subject</h1>
+            <h1 className="text-xl font-medium ">{selectedEmail?.subject}</h1>
             <span className="text-sm bg-gray-200 rounded-md px-2">inbox</span>
           </div>
           <div className="flex-none text-gray-400 my-5 text-sm">
@@ -67,16 +83,11 @@ const Mail = () => {
           </div>
           </div>
           <div className="text-gray-500 text-sm">
-            <h1>abhinavsharma392@gmail.com</h1>
+            <h1>{selectedEmail?.to}</h1>
             <span>to me</span>
           </div>
           <div className="my-10">
-            <p>Welcome Innovator
-            
-            We are excited to have you join the Google Cloud Innovators program!
-            You have joined a community of developers, technologists, and entrepreneurs
-            worldwide who are dedicated to pushing the boundaries of what is possible
-             with Google Cloud.</p>
+            <p>{selectedEmail?.message}</p>
           </div>
       </div>
     </div>

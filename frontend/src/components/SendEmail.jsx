@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpen } from "../redux/appSlice";
+import { setEmails, setOpen } from "../redux/appSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ const SendEmail = () => {
     subject: "",
     message: "",
   });
-  const { open } = useSelector((store) => store.app);
+  const { open, emails } = useSelector(store => store.app);
   const dispatch = useDispatch();
 
   const changeHandler = (e) => {
@@ -21,7 +21,7 @@ const SendEmail = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
+      const res = await axios.post( 
         "http://localhost:8080/api/v1/email/create",
         formData,
         {
@@ -31,6 +31,7 @@ const SendEmail = () => {
           withCredentials: true,
         }
       );
+      dispatch(setEmails([...emails, res.data.email]));
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
