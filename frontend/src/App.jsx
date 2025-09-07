@@ -4,7 +4,7 @@ import Inbox from "./components/Inbox";
 import Navbar from "./components/Navbar";
 import Body from "./components/Body";
 import Mail from "./components/Mail";
-import SendEmail from "./components/Sendemail";
+import SendEmail from "./components/SendEmail";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { Toaster } from 'react-hot-toast';
