@@ -43,7 +43,7 @@ A full-stack Gmail clone application built with React.js and Node.js, featuring 
 
 ### Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/abhii08/gmail_clone-react-redux-nodejs-mongodb.git
 cd gmail-clone
 ```
 
